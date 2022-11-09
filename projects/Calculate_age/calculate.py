@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 from calendar import isleap
+#  Python calendar module: The isleap() method is used to get True if year is a leap year
 
 # judge the leap year
 def judge_leap_year(year):
