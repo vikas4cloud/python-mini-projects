@@ -1,0 +1,115 @@
+🕒 Overview
+This is a digital clock application with a graphical interface that:
+
+Displays the current time
+
+Updates the time every second
+
+Has a menu to switch between Light and Dark themes
+
+🧩 Code Explanation (Step by Step)
+🔹 1. Import Required Libraries
+python
+Copy
+Edit
+import tkinter as tk
+from time import strftime
+tkinter is used for creating the GUI.
+
+strftime from the time module is used to get the current time in a formatted string.
+
+🔹 2. Theme Functions – Light & Dark
+These functions define how the clock looks in different themes.
+
+✅ Light Theme:
+python
+Copy
+Edit
+def light_theme():
+    frame = tk.Frame(root, bg="white")
+    ...
+    lbl_1 = tk.Label(frame, ..., background='White', foreground='black')
+Creates a new frame with a white background.
+
+Adds a label with black text to show time.
+
+✅ Dark Theme:
+python
+Copy
+Edit
+def dark_theme():
+    frame = tk.Frame(root, bg="#22478a")
+    ...
+    lbl_2 = tk.Label(frame, ..., background='#22478a', foreground='black')
+Similar to light theme but with a dark blue (#22478a) background.
+
+🔁 Inside both:
+
+python
+Copy
+Edit
+def time():
+    string = strftime('%I:%M:%S %p')  # Example: 09:52:03 PM
+    lbl_X.config(text=string)
+    lbl_X.after(1000, time)
+This nested time() function updates the clock label every 1000 milliseconds (1 second).
+
+🔹 3. GUI Window Setup
+python
+Copy
+Edit
+root = tk.Tk()
+root.title("Digital-Clock")
+canvas = tk.Canvas(root, height=140, width=400)
+canvas.pack()
+Initializes the main window and sets the title and dimensions.
+
+🔹 4. Default Clock Display
+python
+Copy
+Edit
+frame = tk.Frame(root, bg='#22478a')
+...
+lbl = tk.Label(frame, ..., background='#22478a', foreground='black')
+lbl.pack(anchor="s")
+This is the default clock shown when the app starts — using the dark theme styling.
+
+🔄 5. Time Update Function
+python
+Copy
+Edit
+def time():
+    string = strftime('%I:%M:%S %p')
+    lbl.config(text=string)
+    lbl.after(1000, time)
+time()
+Updates the main label (lbl) every second with the current time.
+
+🧭 6. Theme Selection Menu
+python
+Copy
+Edit
+menubar = tk.Menu(root)
+theme_menu = tk.Menu(menubar, tearoff=0)
+theme_menu.add_command(label="Light", command=light_theme)
+theme_menu.add_command(label="Dark", command=dark_theme)
+...
+root.config(menu=menubar)
+Adds a dropdown menu called “Theme”
+
+Allows users to switch between Light and Dark themes dynamically
+
+🔚 7. Main Loop
+python
+Copy
+Edit
+root.mainloop()
+Keeps the application running and responsive.
+
+✅ Output Behavior
+On launch, you see a digital clock in a dark theme.
+
+Use the menu at the top to switch between Light and Dark themes.
+
+Time updates every second automatically.
+
